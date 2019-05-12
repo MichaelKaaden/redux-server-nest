@@ -1,0 +1,88 @@
+import { Body, Controller, Get, Param, Put } from "@nestjs/common";
+import { CreateCounterDto, DecIncCounterDto } from "../models/body-types";
+import { Counter } from "../models/counter";
+import { JsonCounter, JsonCounters } from "../models/json-types";
+
+@Controller("counters")
+export class CountersController {
+    private counters: Counter[] = [];
+
+    @Get()
+    getAllCounters(): JsonCounters {
+        return this.buildOkayResponse({ counters: this.counters });
+    }
+
+    @Get(":id")
+    getCounter(@Param("id") id: string): JsonCounter {
+        const index: number = parseInt(id, 10);
+        return this.buildOkayResponse({ counter: this.getCounterByIndex(index) });
+    }
+
+    @Put(":id")
+    setCounter(@Param("id") id: string, @Body() body: CreateCounterDto): JsonCounter {
+        const index: number = parseInt(id, 10);
+        const counter: Counter = this.getCounterByIndex(index);
+        counter.value = body.count;
+
+        return this.buildOkayResponse({ counter });
+    }
+
+    @Put(":id/decrement")
+    decrement(@Param("id") id: string, @Body() body: DecIncCounterDto): JsonCounter {
+        const index: number = parseInt(id, 10);
+        const counter: Counter = this.getCounterByIndex(index);
+        let by: number = 1;
+
+        if (body.by) {
+            by = body.by;
+        }
+
+        counter.value -= by;
+
+        return this.buildOkayResponse({ counter });
+    }
+
+    @Put(":id/increment")
+    increment(@Param("id") id: string, @Body() body: DecIncCounterDto): JsonCounter {
+        const index: number = parseInt(id, 10);
+        const counter: Counter = this.getCounterByIndex(index);
+        let by: number = 1;
+
+        if (body.by) {
+            by = body.by;
+        }
+
+        counter.value += by;
+
+        return this.buildOkayResponse({ counter });
+    }
+
+    /**
+     * Retrieve the counter by index.
+     * If the counter doesn't exist yet, add it to the list of counters.
+     *
+     * @param {number} index
+     * @return {}
+     */
+    private getCounterByIndex(index: number): Counter {
+        const counters = this.counters.filter((val: Counter) => val.index === index);
+        let counter;
+
+        if (counters.length === 1) {
+            counter = counters[0];
+        } else {
+            counter = new Counter(index, 0);
+            this.counters.push(counter);
+            this.counters.sort((a: Counter, b: Counter) => (a.index < b.index ? -1 : 1));
+        }
+        return counter;
+    }
+
+    private buildOkayResponse(data) {
+        return {
+            data,
+            message: "okay",
+            status: 200,
+        };
+    }
+}
