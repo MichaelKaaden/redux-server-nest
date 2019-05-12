@@ -1,24 +1,29 @@
 import { Body, Controller, Get, Param, Put } from "@nestjs/common";
+import { ApiResponse, ApiUseTags } from "@nestjs/swagger";
 import { CreateCounterDto, DecIncCounterDto } from "../models/body-types";
 import { Counter } from "../models/counter";
 import { JsonCounter, JsonCounters } from "../models/json-types";
 
+@ApiUseTags("counters")
 @Controller("counters")
 export class CountersController {
     private counters: Counter[] = [];
 
     @Get()
+    @ApiResponse({ status: 200, isArray: true, type: JsonCounters, description: "An array containing all counters." })
     getAllCounters(): JsonCounters {
         return this.buildOkayResponse({ counters: this.counters });
     }
 
     @Get(":id")
+    @ApiResponse({ status: 200, isArray: false, type: JsonCounter, description: "The requested counter." })
     getCounter(@Param("id") id: string): JsonCounter {
         const index: number = parseInt(id, 10);
         return this.buildOkayResponse({ counter: this.getCounterByIndex(index) });
     }
 
     @Put(":id")
+    @ApiResponse({ status: 200, isArray: false, type: JsonCounter, description: "The updated counter." })
     setCounter(@Param("id") id: string, @Body() body: CreateCounterDto): JsonCounter {
         const index: number = parseInt(id, 10);
         const counter: Counter = this.getCounterByIndex(index);
@@ -28,6 +33,7 @@ export class CountersController {
     }
 
     @Put(":id/decrement")
+    @ApiResponse({ status: 200, isArray: false, type: JsonCounter, description: "The updated counter." })
     decrement(@Param("id") id: string, @Body() body: DecIncCounterDto): JsonCounter {
         const index: number = parseInt(id, 10);
         const counter: Counter = this.getCounterByIndex(index);
@@ -43,6 +49,7 @@ export class CountersController {
     }
 
     @Put(":id/increment")
+    @ApiResponse({ status: 200, isArray: false, type: JsonCounter, description: "The updated counter." })
     increment(@Param("id") id: string, @Body() body: DecIncCounterDto): JsonCounter {
         const index: number = parseInt(id, 10);
         const counter: Counter = this.getCounterByIndex(index);
