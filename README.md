@@ -1,75 +1,68 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# Redux Server (Nest.js Edition)
 
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+[![GitHub last commit](https://img.shields.io/github/last-commit/MichaelKaaden/redux-server-nest.svg)](https://github.com/MichaelKaaden/redux-server-nest/commits/master)
+[![GitHub tag](https://img.shields.io/github/tag/MichaelKaaden/redux-server-nest.svg)](https://github.com/MichaelKaaden/redux-server-nest/releases)
+[![GitHub version](https://img.shields.io/github/package-json/v/MichaelKaaden/redux-server-nest.svg)](https://github.com/MichaelKaaden/redux-server-nest/blob/master/package.json)
+[![dependencies](https://img.shields.io/david/MichaelKaaden/redux-server-nest.svg)](https://david-dm.org/MichaelKaaden/redux-server-nest)
+[![devDependencies](https://img.shields.io/david/dev/MichaelKaaden/redux-server-nest.svg)](https://david-dm.org/MichaelKaaden/redux-server-nest?type=dev)
+[![GitHub issues](https://img.shields.io/github/issues/MichaelKaaden/redux-server-nest.svg)](https://github.com/MichaelKaaden/redux-server-nest/issues)
+[![license](https://img.shields.io/github/license/MichaelKaaden/redux-server.svg)](https://github.com/MichaelKaaden/redux-server)
+
+This is a tiny REST service managing counters. The counters
+are kept in memory, so they are reset every time you restart
+the service.
+
+Each counter has
+- a unique index (a number greater or equal 0) and
+- a value.
+
+You can either get or set a counter. But in any distributed
+environment, the latter would be bad practice. Use this only
+for setting values for presentation purposes. Usually, you
+would use the increment and decrement operations instead.
+
+You can either get or set a counter. Of course, you shouldn't
+set any counter in a distributed environment. Instead, you
+should get it and then use the increment or decrement operations
+on it. For presentations, it is a reasonable choice to set
+some counters before showing anything to your audience.
+
+The RESTful Web Service runs at [http://localhost:3000](http://localhost:3000).
+Its Swagger API is available at [http://localhost:3000/swagger-ui/](http://localhost:3000/swagger-ui/). 
+
+The client side to this service resides in
+[https://github.com/MichaelKaaden/redux-client-ngrx](https://github.com/MichaelKaaden/redux-client-ngrx).
 
 ## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
 
 ```bash
-$ npm install
+$ yarn install
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ npm run start
+$ yarn start
 
 # watch mode
-$ npm run start:dev
+$ yarn start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn start:prod
 ```
 
 ## Test
 
 ```bash
 # unit tests
-$ npm run test
+$ yarn test
 
 # e2e tests
-$ npm run test:e2e
+$ yarn test:e2e
 
 # test coverage
-$ npm run test:cov
+$ yarn test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-  Nest is [MIT licensed](LICENSE).
