@@ -5,4 +5,8 @@ node_js:
 before_install:
     - npm install -g yarn
 
+branches:
+    only:
+        - master
+
 cache: yarn
