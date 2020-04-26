@@ -1,34 +1,34 @@
-import { ApiModelProperty } from "@nestjs/swagger";
+import { ApiProperty } from "@nestjs/swagger";
 import { Counter } from "./counter";
 
 export class CounterDto {
-    @ApiModelProperty()
+    @ApiProperty()
     counter: Counter;
 }
 
 export class CountersDto {
-    @ApiModelProperty({ example: [{ index: 0, value: 42 }, { index: 1, value: 4711 }] })
+    @ApiProperty({ example: [{ index: 0, value: 42 }, { index: 1, value: 4711 }] })
     counters: Counter[];
 }
 
 export class JsonCounter {
-    @ApiModelProperty()
+    @ApiProperty()
     data: CounterDto;
 
-    @ApiModelProperty({ example: "okay" })
+    @ApiProperty({ example: "okay" })
     message: string;
 
-    @ApiModelProperty({ example: 200 })
+    @ApiProperty({ example: 200 })
     status: number;
 }
 
 export class JsonCounters {
-    @ApiModelProperty()
+    @ApiProperty()
     data: CountersDto;
 
-    @ApiModelProperty({ example: "okay" })
+    @ApiProperty({ example: "okay" })
     message: string;
 
-    @ApiModelProperty({ example: 200 })
+    @ApiProperty({ example: 200 })
     status: number;
 }

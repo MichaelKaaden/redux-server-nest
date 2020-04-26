@@ -1,10 +1,10 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Param, Put } from "@nestjs/common";
-import { ApiResponse, ApiUseTags } from "@nestjs/swagger";
+import { ApiResponse, ApiTags } from "@nestjs/swagger";
 import { CreateCounterDto, DecIncCounterDto } from "../models/body-types";
 import { Counter } from "../models/counter";
 import { JsonCounter, JsonCounters } from "../models/json-types";
 
-@ApiUseTags("counters")
+@ApiTags("counters")
 @Controller("counters")
 export class CountersController {
     private counters: Counter[] = [];

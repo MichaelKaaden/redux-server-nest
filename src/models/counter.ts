@@ -1,10 +1,10 @@
-import { ApiModelProperty } from "@nestjs/swagger";
+import { ApiProperty } from "@nestjs/swagger";
 
 export class Counter {
-    @ApiModelProperty({ example: 0 })
+    @ApiProperty({ example: 0 })
     index: number;
 
-    @ApiModelProperty({ example: 42 })
+    @ApiProperty({ example: 42 })
     value: number;
 
     constructor(index: number, value: number) {
