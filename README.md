@@ -3,7 +3,7 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/MichaelKaaden/redux-server-nest.svg)](https://github.com/MichaelKaaden/redux-server-nest/commits/master)
 [![GitHub tag](https://img.shields.io/github/tag/MichaelKaaden/redux-server-nest.svg)](https://github.com/MichaelKaaden/redux-server-nest/releases)
 [![GitHub version](https://img.shields.io/github/package-json/v/MichaelKaaden/redux-server-nest.svg)](https://github.com/MichaelKaaden/redux-server-nest/blob/master/package.json)
-[![Build Status](https://travis-ci.org/MichaelKaaden/redux-server-nest.svg?branch=master)](https://travis-ci.org/MichaelKaaden/redux-server-nest)
+[![Build Status](https://travis-ci.com/MichaelKaaden/redux-server-nest.svg?branch=master)](https://travis-ci.com/MichaelKaaden/redux-server-nest)
 [![dependencies](https://img.shields.io/david/MichaelKaaden/redux-server-nest.svg)](https://david-dm.org/MichaelKaaden/redux-server-nest)
 [![devDependencies](https://img.shields.io/david/dev/MichaelKaaden/redux-server-nest.svg)](https://david-dm.org/MichaelKaaden/redux-server-nest?type=dev)
 [![GitHub issues](https://img.shields.io/github/issues/MichaelKaaden/redux-server-nest.svg)](https://github.com/MichaelKaaden/redux-server-nest/issues)
