@@ -117,6 +117,9 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
+# IntelliJ IDEA configuration
+/.idea
+
 # dotenv environment variables file
 .env
 
