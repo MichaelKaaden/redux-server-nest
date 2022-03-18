@@ -10,7 +10,7 @@ export class CountersController {
     private counters: Counter[] = [];
 
     @Get()
-    @ApiResponse({ status: 200, isArray: true, type: JsonCounters, description: "An array containing all counters." })
+    @ApiResponse({ status: 200, isArray: false, type: JsonCounters, description: "An array containing all counters." })
     getAllCounters(): JsonCounters {
         return this.buildOkayResponse({ counters: this.counters });
     }
