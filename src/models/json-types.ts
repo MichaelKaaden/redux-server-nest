@@ -8,6 +8,7 @@ export class CounterDto {
 
 export class CountersDto {
     @ApiProperty({
+        type: [Counter],
         example: [
             { index: 0, value: 42 },
             { index: 1, value: 4711 },
