@@ -1,3 +1,4 @@
+import { expect, test } from "@jest/globals";
 import { Test, TestingModule } from "@nestjs/testing";
 import { DecIncCounterDto } from "../models/body-types";
 import { Counter } from "../models/counter";
@@ -15,7 +16,7 @@ describe("Counters Controller", () => {
     });
 
     describe("getAllCounters()", () => {
-        it("should initially return empty counters", () => {
+        test("should initially return empty counters", () => {
             const result = controller.getAllCounters();
             expect(result.status).toBe(200);
             expect(result.message).toBe("okay");
@@ -23,7 +24,7 @@ describe("Counters Controller", () => {
             expect(data.counters.length).toBe(0);
         });
 
-        it("should return defined counters", () => {
+        test("should return defined counters", () => {
             const expected = [new Counter(0, 1), new Counter(1, 42)];
             (controller as any).counters = expected;
             const result = controller.getAllCounters();
@@ -36,7 +37,7 @@ describe("Counters Controller", () => {
     });
 
     describe("getCounter(id)", () => {
-        it("should return a counter", () => {
+        test("should return a counter", () => {
             const expected = [new Counter(0, 1), new Counter(1, 42)];
             (controller as any).counters = expected;
             const result = controller.getCounter("0");
@@ -46,7 +47,7 @@ describe("Counters Controller", () => {
             expect(data.counter).toBe(expected[0]);
         });
 
-        it("should create a counter", () => {
+        test("should create a counter", () => {
             const result = controller.getCounter("0");
             expect(result.status).toBe(200);
             expect(result.message).toBe("okay");
@@ -55,7 +56,7 @@ describe("Counters Controller", () => {
             expect(data.counter.value).toBe(0);
         });
 
-        it("should choke on a missing index", () => {
+        test("should choke on a missing index", () => {
             expect(() => {
                 controller.getCounter(null);
             }).toThrow("Parameter 'id' missing");
@@ -63,7 +64,7 @@ describe("Counters Controller", () => {
     });
 
     describe("setCounter(id)", () => {
-        it("should set an existing counter", () => {
+        test("should set an existing counter", () => {
             const preparedValue = [new Counter(0, 1), new Counter(1, 42)];
             (controller as any).counters = preparedValue;
             const result = controller.setCounter("0", { count: 2 });
@@ -77,7 +78,7 @@ describe("Counters Controller", () => {
             expect((controller as any).counters[1]).toEqual(preparedValue[1]);
         });
 
-        it("should create a counter", () => {
+        test("should create a counter", () => {
             const result = controller.setCounter("0", { count: 1 });
             expect(result.status).toBe(200);
             expect(result.message).toBe("okay");
@@ -86,7 +87,7 @@ describe("Counters Controller", () => {
             expect(data.counter.value).toBe(1);
         });
 
-        it("should choke on a missing index", () => {
+        test("should choke on a missing index", () => {
             expect(() => {
                 controller.setCounter(null, { count: 1 });
             }).toThrow("Parameter 'id' missing");
@@ -94,7 +95,7 @@ describe("Counters Controller", () => {
     });
 
     describe("decrement(id)", () => {
-        it("should decrement an existing counter", () => {
+        test("should decrement an existing counter", () => {
             const preparedValue = [new Counter(0, 1), new Counter(1, 42)];
             (controller as any).counters = preparedValue;
             const body: DecIncCounterDto = { by: 1 };
@@ -109,7 +110,7 @@ describe("Counters Controller", () => {
             expect((controller as any).counters[1]).toEqual(preparedValue[1]);
         });
 
-        it("should decrement an existing counter without body", () => {
+        test("should decrement an existing counter without body", () => {
             const preparedValue = [new Counter(0, 1), new Counter(1, 42)];
             (controller as any).counters = preparedValue;
             const body: DecIncCounterDto = {};
@@ -124,7 +125,7 @@ describe("Counters Controller", () => {
             expect((controller as any).counters[1]).toEqual(preparedValue[1]);
         });
 
-        it("should create a counter", () => {
+        test("should create a counter", () => {
             const body: DecIncCounterDto = { by: 1 };
             const result = controller.decrement("0", body);
             expect(result.status).toBe(200);
@@ -136,7 +137,7 @@ describe("Counters Controller", () => {
             expect((controller as any).counters[0]).toEqual(expected);
         });
 
-        it("should choke on a missing index", () => {
+        test("should choke on a missing index", () => {
             expect(() => {
                 const body: DecIncCounterDto = { by: 1 };
                 controller.decrement(null, body);
@@ -145,7 +146,7 @@ describe("Counters Controller", () => {
     });
 
     describe("increment(id)", () => {
-        it("should increment an existing counter", () => {
+        test("should increment an existing counter", () => {
             const preparedValue = [new Counter(0, 1), new Counter(1, 42)];
             (controller as any).counters = preparedValue;
             const body: DecIncCounterDto = { by: 1 };
@@ -160,7 +161,7 @@ describe("Counters Controller", () => {
             expect((controller as any).counters[1]).toEqual(preparedValue[1]);
         });
 
-        it("should increment an existing counter without body", () => {
+        test("should increment an existing counter without body", () => {
             const preparedValue = [new Counter(0, 1), new Counter(1, 42)];
             (controller as any).counters = preparedValue;
             const body: DecIncCounterDto = {};
@@ -175,7 +176,7 @@ describe("Counters Controller", () => {
             expect((controller as any).counters[1]).toEqual(preparedValue[1]);
         });
 
-        it("should create a counter", () => {
+        test("should create a counter", () => {
             const body: DecIncCounterDto = { by: 1 };
             const result = controller.increment("0", body);
             expect(result.status).toBe(200);
@@ -187,7 +188,7 @@ describe("Counters Controller", () => {
             expect((controller as any).counters[0]).toEqual(expected);
         });
 
-        it("should choke on a missing index", () => {
+        test("should choke on a missing index", () => {
             expect(() => {
                 const body: DecIncCounterDto = { by: 1 };
                 controller.increment(null, body);
@@ -196,7 +197,7 @@ describe("Counters Controller", () => {
     });
 
     describe("getCounterByIndex(id)", () => {
-        it("should sort the counters", () => {
+        test("should sort the counters", () => {
             const initialCounter1 = new Counter(0, 0);
             const initialCounter2 = new Counter(2, 2);
             (controller as any).counters = [initialCounter1, initialCounter2];
