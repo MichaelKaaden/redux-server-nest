@@ -1,6 +1,6 @@
 {
     "name": "redux-server-nest",
-    "version": "1.0.21",
+    "version": "1.0.22",
     "description": "",
     "author": "",
     "license": "MIT",
@@ -25,19 +25,19 @@
         "@nestjs/platform-express": "^9.4.0",
         "@nestjs/swagger": "^6.3.0",
         "reflect-metadata": "^0.1.13",
-        "rxjs": "^7.8.0",
-        "swagger-ui-express": "^4.6.2"
+        "rxjs": "^7.8.1",
+        "swagger-ui-express": "^4.6.3"
     },
     "devDependencies": {
-        "@nestjs/cli": "^9.3.0",
+        "@nestjs/cli": "^9.4.2",
         "@nestjs/testing": "^9.4.0",
         "@types/express": "^4.17.17",
-        "@types/jest": "^29.5.0",
-        "@types/node": "^18.15.11",
+        "@types/jest": "^29.5.1",
+        "@types/node": "^18.16.5",
         "@types/supertest": "^2.0.12",
         "jest": "^29.5.0",
         "nodemon": "^2.0.22",
-        "prettier": "^2.8.7",
+        "prettier": "^2.8.8",
         "rimraf": "^5.0.0",
         "supertest": "^6.3.3",
         "ts-jest": "^29.1.0",
