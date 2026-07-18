@@ -89,12 +89,9 @@ export class CountersController {
      * @return {}
      */
     private getCounterByIndex(index: number): Counter {
-        const counters = this.counters.filter((val: Counter) => val.index === index);
-        let counter;
+        let counter = this.counters.find((val: Counter) => val.index === index);
 
-        if (counters.length === 1) {
-            counter = counters[0];
-        } else {
+        if (counter == null) {
             counter = new Counter(index, 0);
             this.counters.push(counter);
             this.counters.sort((a: Counter, b: Counter) => a.index - b.index);
