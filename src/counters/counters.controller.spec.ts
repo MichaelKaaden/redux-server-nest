@@ -61,6 +61,12 @@ describe("Counters Controller", () => {
                 controller.getCounter(null);
             }).toThrow("Parameter 'id' missing");
         });
+
+        test("should choke on a non-numeric index", () => {
+            expect(() => {
+                controller.getCounter("abc");
+            }).toThrow("Parameter 'id' must be a number");
+        });
     });
 
     describe("setCounter(id)", () => {

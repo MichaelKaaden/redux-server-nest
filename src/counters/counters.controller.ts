@@ -18,20 +18,14 @@ export class CountersController {
     @Get(":id")
     @ApiResponse({ status: 200, isArray: false, type: JsonCounter, description: "The requested counter." })
     getCounter(@Param("id") id: string): JsonCounter {
-        if (id == null) { // this checks for both null and undefined
-            throw new HttpException("Parameter 'id' missing", HttpStatus.BAD_REQUEST);
-        }
-        const index: number = parseInt(id, 10);
+        const index: number = this.parseId(id);
         return this.buildOkayResponse({ counter: this.getCounterByIndex(index) });
     }
 
     @Put(":id")
     @ApiResponse({ status: 200, isArray: false, type: JsonCounter, description: "The updated counter." })
     setCounter(@Param("id") id: string, @Body() body: CreateCounterDto): JsonCounter {
-        if (id == null) { // this checks for both null and undefined
-            throw new HttpException("Parameter 'id' missing", HttpStatus.BAD_REQUEST);
-        }
-        const index: number = parseInt(id, 10);
+        const index: number = this.parseId(id);
         const counter: Counter = this.getCounterByIndex(index);
         counter.value = body.count;
 
@@ -41,10 +35,7 @@ export class CountersController {
     @Put(":id/decrement")
     @ApiResponse({ status: 200, isArray: false, type: JsonCounter, description: "The updated counter." })
     decrement(@Param("id") id: string, @Body() body: DecIncCounterDto): JsonCounter {
-        if (id == null) { // this checks for both null and undefined
-            throw new HttpException("Parameter 'id' missing", HttpStatus.BAD_REQUEST);
-        }
-        const index: number = parseInt(id, 10);
+        const index: number = this.parseId(id);
         const counter: Counter = this.getCounterByIndex(index);
         let by: number = 1;
 
@@ -60,10 +51,7 @@ export class CountersController {
     @Put(":id/increment")
     @ApiResponse({ status: 200, isArray: false, type: JsonCounter, description: "The updated counter." })
     increment(@Param("id") id: string, @Body() body: DecIncCounterDto): JsonCounter {
-        if (id == null) { // this checks for both null and undefined
-            throw new HttpException("Parameter 'id' missing", HttpStatus.BAD_REQUEST);
-        }
-        const index: number = parseInt(id, 10);
+        const index: number = this.parseId(id);
         const counter: Counter = this.getCounterByIndex(index);
         let by: number = 1;
 
@@ -74,6 +62,23 @@ export class CountersController {
         counter.value += by;
 
         return this.buildOkayResponse({ counter });
+    }
+
+    /**
+     * Parse the "id" route param into a counter index.
+     *
+     * @param {string} id
+     * @return {number}
+     */
+    private parseId(id: string): number {
+        if (id == null) { // this checks for both null and undefined
+            throw new HttpException("Parameter 'id' missing", HttpStatus.BAD_REQUEST);
+        }
+        const index: number = parseInt(id, 10);
+        if (Number.isNaN(index)) {
+            throw new HttpException("Parameter 'id' must be a number", HttpStatus.BAD_REQUEST);
+        }
+        return index;
     }
 
     /**
