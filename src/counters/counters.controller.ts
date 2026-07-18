@@ -97,7 +97,7 @@ export class CountersController {
         } else {
             counter = new Counter(index, 0);
             this.counters.push(counter);
-            this.counters.sort((a: Counter, b: Counter) => (a.index < b.index ? -1 : 1));
+            this.counters.sort((a: Counter, b: Counter) => a.index - b.index);
         }
         return counter;
     }
