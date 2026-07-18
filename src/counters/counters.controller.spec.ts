@@ -137,6 +137,15 @@ describe("Counters Controller", () => {
             expect((controller as any).counters[0]).toEqual(expected);
         });
 
+        test("should decrement by 0 when explicitly given", () => {
+            const preparedValue = [new Counter(0, 1)];
+            (controller as any).counters = preparedValue;
+            const body: DecIncCounterDto = { by: 0 };
+            const result = controller.decrement("0", body);
+            const data = result.data;
+            expect(data.counter.value).toBe(1);
+        });
+
         test("should choke on a missing index", () => {
             expect(() => {
                 const body: DecIncCounterDto = { by: 1 };
@@ -186,6 +195,15 @@ describe("Counters Controller", () => {
             expect(data.counter).toEqual(expected);
             expect((controller as any).counters.length).toBe(1);
             expect((controller as any).counters[0]).toEqual(expected);
+        });
+
+        test("should increment by 0 when explicitly given", () => {
+            const preparedValue = [new Counter(0, 1)];
+            (controller as any).counters = preparedValue;
+            const body: DecIncCounterDto = { by: 0 };
+            const result = controller.increment("0", body);
+            const data = result.data;
+            expect(data.counter.value).toBe(1);
         });
 
         test("should choke on a missing index", () => {

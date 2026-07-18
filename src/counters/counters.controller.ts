@@ -48,7 +48,7 @@ export class CountersController {
         const counter: Counter = this.getCounterByIndex(index);
         let by: number = 1;
 
-        if (body.by) {
+        if (body.by != null) {
             by = body.by;
         }
 
@@ -67,7 +67,7 @@ export class CountersController {
         const counter: Counter = this.getCounterByIndex(index);
         let by: number = 1;
 
-        if (body.by) {
+        if (body.by != null) {
             by = body.by;
         }
 
