@@ -37,11 +37,7 @@ export class CountersController {
     decrement(@Param("id") id: string, @Body() body: DecIncCounterDto): JsonCounter {
         const index: number = this.parseId(id);
         const counter: Counter = this.getCounterByIndex(index);
-        let by: number = 1;
-
-        if (body.by != null) {
-            by = body.by;
-        }
+        const by: number = body.by ?? 1;
 
         counter.value -= by;
 
@@ -53,11 +49,7 @@ export class CountersController {
     increment(@Param("id") id: string, @Body() body: DecIncCounterDto): JsonCounter {
         const index: number = this.parseId(id);
         const counter: Counter = this.getCounterByIndex(index);
-        let by: number = 1;
-
-        if (body.by != null) {
-            by = body.by;
-        }
+        const by: number = body.by ?? 1;
 
         counter.value += by;
 
@@ -99,7 +91,7 @@ export class CountersController {
         return counter;
     }
 
-    private buildOkayResponse(data) {
+    private buildOkayResponse<T>(data: T) {
         return {
             data,
             message: "okay",
